@@ -27,3 +27,13 @@ A simple number guessing game built using JavaScript.
 ## 🚀 How to Play
 
 Open `index.html` in your browser and start guessing!
+
+## 📸 Screenshots:
+
+GAME START :
+![Game Start](../previews/Guess-My-Number-1.png)
+
+CORRECT GUESS :
+![Correct Guess](../previews/Guess-My-Number-2.png)
+
+
