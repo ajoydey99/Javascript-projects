@@ -210,3 +210,79 @@ poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
 (function () {
   console.log('This will never run again');
 })();
+
+(() => console.log('This will never run again'))();
+
+// CLOSURES
+// A closure gives a function access to all the
+// variables of its parent function, even after that
+// parent function has returned. The function keeps a
+// reference of its outer scope, which preserves the
+// scope chain throughout time
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker(); // passengerCount = 1
+booker(); // passengerCount = 2
+booker(); // passengerCount = 3
+
+console.dir(booker);
+
+// example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+g();
+f(); // assigned by g
+
+const h = function () {
+  const b = 77;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+h();
+f(); // reassign by h and old closure disappear
+
+// example 2
+
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boaeding in ${wait} seconds`);
+};
+
+boardPassengers(180, 3);
+
+////////////////////////////////////
+// Coding challenge 2
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
